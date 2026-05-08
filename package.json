@@ -1,6 +1,6 @@
 {
 	"name": "pict-meadow-connection-manager",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Browser-safe Pict provider + list/detail views for managing named meadow database connections. Delegates form rendering to pict-section-connection-form so the per-provider field schemas come from one canonical source (the meadow-connection-* modules).",
 	"main": "source/Pict-Meadow-Connection-Manager.js",
 	"scripts": {

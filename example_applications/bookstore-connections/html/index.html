@@ -13,8 +13,8 @@
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 			margin: 0;
 			padding: 20px;
-			background: #f5f5f5;
-			color: #1a1a1a;
+			background: var(--theme-color-background-secondary, #f5f5f5);
+			color: var(--theme-color-text-primary, #1a1a1a);
 		}
 
 		h1 { margin-top: 0; }
@@ -22,8 +22,8 @@
 		/* ── MCM component styles ──────────────────────────── */
 
 		.mcm-connection-list {
-			background: #fff;
-			border: 1px solid #ddd;
+			background: var(--theme-color-background-panel, #fff);
+			border: 1px solid var(--theme-color-border-default, #ddd);
 			border-radius: 6px;
 			padding: 16px;
 			margin-bottom: 20px;
@@ -43,20 +43,20 @@
 			align-items: center;
 			gap: 12px;
 			padding: 8px 12px;
-			border: 1px solid #eee;
+			border: 1px solid var(--theme-color-border-light, #eee);
 			border-radius: 4px;
 			margin-bottom: 6px;
-			background: #fafafa;
+			background: var(--theme-color-background-secondary, #fafafa);
 		}
 
 		.mcm-conn-name { font-weight: 600; min-width: 160px; }
-		.mcm-conn-type { color: #666; min-width: 100px; }
-		.mcm-conn-status { color: #888; min-width: 80px; font-size: 0.9em; }
+		.mcm-conn-type { color: var(--theme-color-text-secondary, #666); min-width: 100px; }
+		.mcm-conn-status { color: var(--theme-color-text-muted, #888); min-width: 80px; font-size: 0.9em; }
 		.mcm-conn-actions { margin-left: auto; display: flex; gap: 6px; }
 
 		.mcm-connection-detail {
-			background: #fff;
-			border: 1px solid #ddd;
+			background: var(--theme-color-background-panel, #fff);
+			border: 1px solid var(--theme-color-border-default, #ddd);
 			border-radius: 6px;
 			padding: 16px;
 			margin-bottom: 20px;
@@ -75,7 +75,7 @@
 			gap: 8px;
 			margin-top: 12px;
 			padding-top: 12px;
-			border-top: 1px solid #eee;
+			border-top: 1px solid var(--theme-color-border-light, #eee);
 		}
 
 		.mcm-config-fields {
@@ -83,8 +83,8 @@
 			flex-direction: column;
 			gap: 8px;
 			padding: 12px;
-			background: #f9f9f9;
-			border: 1px solid #eee;
+			background: var(--theme-color-background-secondary, #f9f9f9);
+			border: 1px solid var(--theme-color-border-light, #eee);
 			border-radius: 4px;
 		}
 
@@ -97,17 +97,17 @@
 		.mcm-field-label {
 			font-size: 0.85em;
 			font-weight: 600;
-			color: #444;
+			color: var(--theme-color-text-secondary, #444);
 		}
 
 		.mcm-field-help {
 			font-size: 0.8em;
-			color: #888;
+			color: var(--theme-color-text-muted, #888);
 		}
 
 		.mcm-field input, .mcm-field select {
 			padding: 6px 10px;
-			border: 1px solid #ccc;
+			border: 1px solid var(--theme-color-border-default, #ccc);
 			border-radius: 4px;
 			font-size: 0.95em;
 		}
@@ -116,34 +116,34 @@
 
 		.mcm-btn {
 			padding: 6px 14px;
-			border: 1px solid #ccc;
+			border: 1px solid var(--theme-color-border-default, #ccc);
 			border-radius: 4px;
-			background: #fff;
+			background: var(--theme-color-background-panel, #fff);
 			cursor: pointer;
 			font-size: 0.9em;
 		}
 
-		.mcm-btn:hover { background: #f0f0f0; }
+		.mcm-btn:hover { background: var(--theme-color-background-tertiary, #f0f0f0); }
 
 		.mcm-btn-primary {
-			background: #2563eb;
-			color: #fff;
-			border-color: #2563eb;
+			background: var(--theme-color-brand-primary, #2563eb);
+			color: var(--theme-color-background-panel, #fff);
+			border-color: var(--theme-color-brand-primary, #2563eb);
 		}
 
-		.mcm-btn-primary:hover { background: #1d4ed8; }
+		.mcm-btn-primary:hover { background: var(--theme-color-brand-primary-hover, #1d4ed8); }
 
 		.mcm-btn-add {
-			background: #16a34a;
-			color: #fff;
-			border-color: #16a34a;
+			background: var(--theme-color-status-success, #16a34a);
+			color: var(--theme-color-background-panel, #fff);
+			border-color: var(--theme-color-status-success, #16a34a);
 		}
 
-		.mcm-btn-add:hover { background: #15803d; }
+		.mcm-btn-add:hover { background: var(--theme-color-status-success, #15803d); }
 
 		.mcm-btn-danger {
-			color: #dc2626;
-			border-color: #dc2626;
+			color: var(--theme-color-status-error, #dc2626);
+			border-color: var(--theme-color-status-error, #dc2626);
 		}
 
 		.mcm-btn-danger:hover { background: #fef2f2; }

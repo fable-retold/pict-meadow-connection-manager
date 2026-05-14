@@ -36,16 +36,16 @@
 	"dependencies": {
 		"fable-serviceproviderbase": "^3.0.19",
 		"pict-provider": "^1.0.13",
-		"pict-section-connection-form": "^0.0.2",
+		"pict-section-connection-form": "^0.0.3",
 		"pict-view": "^1.0.68"
 	},
 	"devDependencies": {
 		"chai": "^4.3.10",
 		"jsdom": "^25.0.1",
 		"mocha": "^11.0.1",
-		"pict": "^1.0.367",
+		"pict": "^1.0.368",
 		"pict-application": "^1.0.34",
-		"pict-docuserve": "^0.1.6",
+		"pict-docuserve": "^1.0.1",
 		"quackage": "^1.2.3"
 	},
 	"overrides": {

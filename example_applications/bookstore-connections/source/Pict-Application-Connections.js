@@ -18,8 +18,16 @@
 
 'use strict';
 
-const libPictApplication = require('pict-application');
-const libMCM = require('pict-meadow-connection-manager');
+const libPictApplication  = require('pict-application');
+const libMCM              = require('pict-meadow-connection-manager');
+const libPictSectionModal = require('pict-section-modal');
+const libPictSectionTheme = require('pict-section-theme');
+const libBrand            = require('./BookstoreConnections-Brand.js');
+
+const libViewLayout       = require('./views/PictView-Bookstore-Layout.js');
+const libViewTopBarNav    = require('./views/PictView-Bookstore-TopBar-Nav.js');
+const libViewTopBarUser   = require('./views/PictView-Bookstore-TopBar-User.js');
+const libViewSettings     = require('./views/PictView-Bookstore-SettingsPanel.js');
 
 // ─────────────────────────────────────────────────────────────────
 //  Hardcoded schemas — same shape that
@@ -69,6 +77,11 @@ class ConnectionsApplication extends libPictApplication
 	{
 		super(pFable, pOptions, pServiceHash);
 
+		// ── Modal section (provides shell + panels + modal API) ───
+		this.pict.addView('Pict-Section-Modal',
+			libPictSectionModal.default_configuration,
+			libPictSectionModal);
+
 		// ── Provider ──────────────────────────────────────────────
 		let tmpProviderConfig = Object.assign({},
 			libMCM.PictProviderConnectionManager.default_configuration,
@@ -101,15 +114,81 @@ class ConnectionsApplication extends libPictApplication
 					FieldIDPrefix:             'mcm-conn',
 					ShowProviderSelect:        false       // detail view owns the type <select>
 				}), libMCM.PictSectionConnectionForm);
+
+		// ── Layout (shell host) ───────────────────────────────────
+		this.pict.addView('Bookstore-Layout',
+			libViewLayout.default_configuration,
+			libViewLayout);
+
+		// ── TopBar slot views — register BEFORE Theme-Section ─────
+		// Theme-Section's bootstrap looks them up by hash when wiring TopBar.
+		this.pict.addView('Bookstore-TopBar-Nav',
+			libViewTopBarNav.default_configuration,
+			libViewTopBarNav);
+		this.pict.addView('Bookstore-TopBar-User',
+			libViewTopBarUser.default_configuration,
+			libViewTopBarUser);
+
+		// ── Settings panel content view ───────────────────────────
+		this.pict.addView('Bookstore-SettingsPanel',
+			libViewSettings.default_configuration,
+			libViewSettings);
+
+		// ── Theme-Section provider — LAST, so it can find the slot views ─
+		this.pict.addProvider('Theme-Section',
+			{
+				ApplyDefault: 'pict-default',
+				DefaultMode:  'system',
+				DefaultScale: 1.0,
+				Brand:        libBrand,
+				Views: ['Picker', 'ModeToggle', 'ScaleSelect', 'BrandMark', 'TopBar'],
+				ViewOptions:
+				{
+					TopBar:
+					{
+						NavView:  'Bookstore-TopBar-Nav',
+						UserView: 'Bookstore-TopBar-User',
+						Height:   48
+					}
+				}
+			},
+			libPictSectionTheme);
 	}
 
 	onAfterInitializeAsync(fCallback)
 	{
+		// Render the shell layout first — this creates the panel destination
+		// divs (#MCM-ConnectionList-Container, #MCM-ConnectionDetail-Container,
+		// #Theme-TopBar, #Bookstore-Settings-Panel).
+		this.pict.views['Bookstore-Layout'].render();
+
+		// Wire the connection-selection / refresh paths to also redraw the
+		// TopBar Nav slot, so it shows the active connection name.
+		// selectConnection() only calls refreshDetailView(); refreshViews()
+		// covers add/remove/save/setSchemas — hook both.
+		let tmpProvider = this.pict.providers.MeadowConnectionManager;
+		let tmpLayout   = this.pict.views['Bookstore-Layout'];
+		if (tmpProvider && tmpLayout && typeof tmpLayout.renderTopBar === 'function')
+		{
+			let tmpOrigRefreshViews  = tmpProvider.refreshViews.bind(tmpProvider);
+			let tmpOrigRefreshDetail = tmpProvider.refreshDetailView.bind(tmpProvider);
+			tmpProvider.refreshViews = function ()
+			{
+				tmpOrigRefreshViews();
+				tmpLayout.renderTopBar();
+			};
+			tmpProvider.refreshDetailView = function ()
+			{
+				tmpOrigRefreshDetail();
+				tmpLayout.renderTopBar();
+			};
+		}
+
 		// Inject the schemas.  In production this would come from a
 		// `GET /<app>/connection/schemas` endpoint backed by MCM.
 		this.pict.providers.MeadowConnectionManager.setSchemas(DEMO_SCHEMAS);
 
-		// Render the connection list.
+		// Render the connection list inside the shell's sidebar destination.
 		this.pict.views['MCM-ConnectionList'].render();
 
 		return super.onAfterInitializeAsync(fCallback);

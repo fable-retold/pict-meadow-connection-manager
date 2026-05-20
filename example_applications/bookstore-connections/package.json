@@ -5,6 +5,8 @@
 	"main": "source/Pict-Application-Connections.js",
 	"scripts": {
 		"start": "node server.js",
+		"brand": "node node_modules/pict-section-theme/bin/pict-section-theme-brand.js --manifest ../../../../../Retold-Modules-Manifest.json --module pict-meadow-connection-manager/bookstore-connections --favicons html/favicons",
+		"prebuild": "npm run brand",
 		"build": "npx quack build",
 		"docker-up": "docker compose up -d",
 		"docker-down": "docker compose down",
@@ -25,6 +27,9 @@
 		"pict-application": "^1.0.33",
 		"pict-meadow-connection-manager": "file:../../",
 		"pict-provider": "^1.0.12",
+		"pict-provider-theme": "^1.0.0",
+		"pict-section-modal": "^1.0.0",
+		"pict-section-theme": "^1.0.0",
 		"pict-view": "^1.0.67",
 		"restify": "^11.1.0"
 	},
@@ -34,15 +39,35 @@
 		"quackage": "^1.1.2"
 	},
 	"overrides": {
-		"braces":               ">=3.0.3",
-		"diff":                 ">=5.2.2",
-		"form-data":            ">=2.5.4",
-		"micromatch":           ">=4.0.8",
-		"minimatch":            ">=5.1.8",
-		"postcss":              ">=8.5.9",
-		"qs":                   ">=6.14.1",
-		"send":                 ">=0.19.0",
+		"braces": ">=3.0.3",
+		"diff": ">=5.2.2",
+		"form-data": ">=2.5.4",
+		"micromatch": ">=4.0.8",
+		"minimatch": ">=5.1.8",
+		"postcss": ">=8.5.9",
+		"qs": ">=6.14.1",
+		"send": ">=0.19.0",
 		"serialize-javascript": ">=6.0.2",
-		"tough-cookie":         ">=4.1.3"
+		"tough-cookie": ">=4.1.3"
+	},
+	"retold": {
+		"brand": {
+			"Hash": "pict-meadow-connection-manager/bookstore-connections",
+			"Name": "Bookstore Connections",
+			"Tagline": "Manage meadow connections for the bookstore demo",
+			"Palette": "carnival",
+			"Icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\" width=\"96\" height=\"96\">\n\t\t<defs>\n\t\t\t<clipPath id=\"frame-pict-meadow-connection-manager_bookstore-connections-filled-light\">\n\t\t\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\"/>\n\t\t\t</clipPath>\n\t\t</defs>\n\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\" fill=\"#9df342\"/>\n\t\t<g clip-path=\"url(#frame-pict-meadow-connection-manager_bookstore-connections-filled-light)\"><circle cx=\"48\" cy=\"48\" r=\"36\" fill=\"none\" stroke=\"#42b3e7\" stroke-width=\"2\" opacity=\"0.45\"/>\n\t\t\t\t\t<circle cx=\"48\" cy=\"48\" r=\"22\" fill=\"rgba(255,255,255,0.18)\"/>\n\t\t\t\t\t<circle cx=\"24.92\" cy=\"75.63\" r=\"9\" fill=\"#42b3e7\"/></g>\n\t\t<text x=\"48\" y=\"50\" text-anchor=\"middle\" dominant-baseline=\"central\"\n\t\t\tfont-family=\"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif\"\n\t\t\tfont-size=\"22\" font-weight=\"600\"\n\t\t\tfill=\"#ffffff\" letter-spacing=\"-1\">PMCM</text>\n\t</svg>",
+			"IconType": "svg",
+			"Favicon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\" width=\"96\" height=\"96\">\n\t\t<defs>\n\t\t\t<clipPath id=\"fav-pict-meadow-connection-manager_bookstore-connections-light\">\n\t\t\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\"/>\n\t\t\t</clipPath>\n\t\t</defs>\n\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\" fill=\"#9df342\"/>\n\t\t<g clip-path=\"url(#fav-pict-meadow-connection-manager_bookstore-connections-light)\"><circle cx=\"48\" cy=\"48\" r=\"28\" fill=\"rgba(255,255,255,0.22)\"/></g>\n\t\t<text x=\"48\" y=\"50\" text-anchor=\"middle\" dominant-baseline=\"central\"\n\t\t\tfont-family=\"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif\"\n\t\t\tfont-size=\"60\" font-weight=\"800\"\n\t\t\tfill=\"#ffffff\" letter-spacing=\"-1\">P</text>\n\t</svg>",
+			"FaviconDark": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 96 96\" width=\"96\" height=\"96\">\n\t\t<defs>\n\t\t\t<clipPath id=\"fav-pict-meadow-connection-manager_bookstore-connections-dark\">\n\t\t\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\"/>\n\t\t\t</clipPath>\n\t\t</defs>\n\t\t<path d=\"M 24 2\n\t\tH 72\n\t\tQ 94 2 94 24\n\t\tV 72\n\t\tQ 94 94 72 94\n\t\tH 24\n\t\tQ 2 94 2 72\n\t\tV 24\n\t\tQ 2 2 24 2 Z\" fill=\"#caf59b\"/>\n\t\t<g clip-path=\"url(#fav-pict-meadow-connection-manager_bookstore-connections-dark)\"><circle cx=\"48\" cy=\"48\" r=\"28\" fill=\"rgba(255,255,255,0.22)\"/></g>\n\t\t<text x=\"48\" y=\"50\" text-anchor=\"middle\" dominant-baseline=\"central\"\n\t\t\tfont-family=\"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif\"\n\t\t\tfont-size=\"60\" font-weight=\"800\"\n\t\t\tfill=\"#101418\" letter-spacing=\"-1\">P</text>\n\t</svg>",
+			"Colors": {
+				"Primary": "#9df342",
+				"Secondary": "#42b3e7",
+				"PrimaryLight": "#9df342",
+				"PrimaryDark": "#caf59b",
+				"SecondaryLight": "#42b3e7",
+				"SecondaryDark": "#97d2ee"
+			}
+		}
 	}
 }

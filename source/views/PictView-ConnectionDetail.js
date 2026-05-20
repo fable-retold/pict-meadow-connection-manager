@@ -28,7 +28,64 @@ const _DefaultConfiguration =
 	AutoInitializeOrdinal:        0,
 	AutoRender:                   false,
 	AutoSolveWithApp:             false,
-	CSS:                          false,
+	CSS: /*css*/`
+		.mcm-connection-detail {
+			background: var(--theme-color-background-panel, #ffffff);
+			border: 1px solid var(--theme-color-border-default, #dddddd);
+			border-radius: 6px;
+			padding: 16px;
+			margin-bottom: 20px;
+			color: var(--theme-color-text-primary, #1a1a1a);
+		}
+		.mcm-detail-header h3 { margin: 0 0 12px 0; }
+		.mcm-detail-form { display: flex; flex-direction: column; gap: 10px; }
+		.mcm-detail-actions {
+			display: flex;
+			gap: 8px;
+			margin-top: 12px;
+			padding-top: 12px;
+			border-top: 1px solid var(--theme-color-border-light, #eeeeee);
+		}
+		.mcm-detail-form .mcm-conn-status {
+			font-size: 0.95em;
+			font-weight: 500;
+		}
+		.mcm-field { display: flex; flex-direction: column; gap: 4px; }
+		.mcm-field-label {
+			font-size: 0.85em;
+			font-weight: 600;
+			color: var(--theme-color-text-secondary, #444444);
+		}
+		.mcm-field-help {
+			font-size: 0.8em;
+			color: var(--theme-color-text-muted, #888888);
+		}
+		.mcm-field input,
+		.mcm-field select {
+			padding: 6px 10px;
+			border: 1px solid var(--theme-color-border-default, #cccccc);
+			border-radius: 4px;
+			font-size: 0.95em;
+			background: var(--theme-color-background-panel, #ffffff);
+			color: var(--theme-color-text-primary, #1a1a1a);
+		}
+		.mcm-field input:focus,
+		.mcm-field select:focus {
+			outline: 2px solid var(--theme-color-focus-outline, var(--theme-color-brand-primary, #2563eb));
+			outline-offset: 1px;
+		}
+		.mcm-btn-primary {
+			background: var(--theme-color-brand-primary, #2563eb);
+			color: var(--theme-color-text-on-brand, #ffffff);
+			border-color: var(--theme-color-brand-primary, #2563eb);
+		}
+		.mcm-btn-primary:hover {
+			background: var(--theme-color-brand-primary-hover, #1d4ed8);
+		}
+		.mcm-connection-detail .mcm-conn-status[data-status="OK"]     { color: var(--theme-color-status-success, #16a34a); }
+		.mcm-connection-detail .mcm-conn-status[data-status="Failed"] { color: var(--theme-color-status-error,   #dc2626); }
+		.mcm-connection-detail .mcm-conn-status[data-status="Error"]  { color: var(--theme-color-status-error,   #dc2626); }
+	`,
 	CSSPriority:                  500,
 
 	Templates:
@@ -51,7 +108,7 @@ const _DefaultConfiguration =
 								'{~TS:MCM-ConnectionDetail-TypeOption:AppData.MCM.ConnectionTypes~}',
 							'</select>',
 						'</label>',
-						'<span class="mcm-conn-status">Status: {~D:Record.Status~}</span>',
+						'<span class="mcm-conn-status" data-status="{~D:Record.Status~}">Status: {~D:Record.Status~}</span>',
 						// pict-section-connection-form renders here
 						'<section id="MCM-ConnectionConfig-Container"></section>',
 						'<footer class="mcm-detail-actions">',
@@ -97,6 +154,8 @@ class PictViewConnectionDetail extends libPictView
 	 */
 	onAfterRender(pRenderable, pAddress, pRecord, pContent)
 	{
+		if (this.pict && this.pict.CSSMap) { this.pict.CSSMap.injectCSS(); }
+
 		let tmpProvider = this.pict.providers.MeadowConnectionManager;
 		let tmpFormView = this.pict.views['PictSection-ConnectionForm'];
 		if (!tmpProvider || !tmpFormView)

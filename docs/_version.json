@@ -1,7 +1,7 @@
 {
 	"Name": "pict-meadow-connection-manager",
-	"Version": "1.0.0",
-	"Description": "Browser-safe Pict provider for meadow database connection configuration. No server-side database driver dependencies.",
-	"GeneratedAt": "2026-04-10T17:24:15.568Z",
-	"GitCommit": "94851ff"
+	"Version": "1.2.1",
+	"Description": "Browser-safe Pict provider + list/detail views for managing named meadow database connections. Delegates form rendering to pict-section-connection-form so the per-provider field schemas come from one canonical source (the meadow-connection-* modules).",
+	"GeneratedAt": "2026-05-22T05:42:52.033Z",
+	"GitCommit": "867679b"
 }

@@ -1,6 +1,7 @@
 # Bookstore Connections — Named Meadow Connection Manager
 
 <!-- docuserve:example-launch:start -->
+> **[&#9654; Launch the live app](examples/bookstore-connections/index.html)** — runs in your browser, opens in a new tab.
 <!-- docuserve:example-launch:end -->
 
 A reference application that wires the full `pict-meadow-connection-manager`

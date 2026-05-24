@@ -1,5 +1,5 @@
 {
-	"Generated": "2026-05-23T01:51:03.071Z",
+	"Generated": "2026-05-23T18:29:03.845Z",
 	"Mode": "module",
 	"GitHubOrg": "stevenvelozo",
 	"DefaultBranch": "master",
@@ -61,7 +61,9 @@
 			"_cover.md",
 			"_sidebar.md",
 			"_version.json",
+			"examples/README.md",
 			"examples/bookstore-connections/README.md",
+			"examples/bookstore-connections/index.html",
 			"index.html",
 			"retold-catalog.json",
 			"retold-keyword-index.json"

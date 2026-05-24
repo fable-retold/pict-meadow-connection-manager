@@ -7,3 +7,8 @@
 [GitHub](https://github.com/stevenvelozo/pict-meadow-connection-manager)
 [Get Started](#pict-meadow-connection-manager)
 
+<!-- docuserve:examples:start -->
+| Example | Complexity | Launch |
+|---------|------------|--------|
+| [Bookstore Connections](examples/bookstore-connections/README.md) | Intermediate | [&#9654; Launch](examples/bookstore-connections/index.html) |
+<!-- docuserve:examples:end -->
